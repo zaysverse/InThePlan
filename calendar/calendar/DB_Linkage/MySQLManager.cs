@@ -10,7 +10,7 @@ namespace calendar.DB_Linkage
         {
             Debug.WriteLine("DataBase Initialize");
 
-            string connectionPath = $"SERVER=localhost;DATABASE=user;UID=root;PASSWORD=비밀번호";
+            string connectionPath = $"SERVER=localhost;DATABASE=calendarDB;UID=root;PASSWORD=1234";
             App.connection = new MySqlConnection(connectionPath);
         }
 
