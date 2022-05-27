@@ -1,0 +1,50 @@
+﻿<UserControl
+    x:Class="calendar.View.IntroView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:calendar.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid>
+        <Border CornerRadius="10" >
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0.0" Color="#99FEFF" />
+                    <GradientStop Offset="1" Color="#B983FF" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            Orientation="Vertical">
+            <TextBlock
+                Name="programName"
+                Margin="30"
+                FontFamily="helvetica"
+                FontSize="60"
+                FontWeight="ExtraLight"
+                Foreground="White">
+                In The Plan
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="programName"
+                                    Storyboard.TargetProperty="(TextBlock.Opacity)"
+                                    From="0"
+                                    To="0.8"
+                                    Duration="0:0:3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>
