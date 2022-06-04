@@ -46,20 +46,7 @@ namespace calendar.ViewModel
             currentPageInd = 0;
             NavigateTo(currentPageInd);
 
-            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(3000);
-            timer.Tick += new EventHandler(timer_Tick);
 
-            timer.Start();
-
-
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            NavigateTo(1);
-            System.Windows.Threading.DispatcherTimer timer = (System.Windows.Threading.DispatcherTimer)sender;
-            timer.Stop();
         }
 
         public void NavigateTo(int pageNum)

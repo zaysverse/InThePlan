@@ -18,5 +18,6 @@ namespace calendar
 
         public static bool DataSaveResult;
         public static bool DataSearchResult;
+
     }
 }

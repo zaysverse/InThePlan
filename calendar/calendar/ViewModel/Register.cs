@@ -11,7 +11,7 @@ namespace calendar.ViewModel
 
     class Register : ViewModelBase
     {
-        UserInformation user = new UserInformation();
+        User_Info user = new User_Info();
 
         private string id;
         public string Id
@@ -72,6 +72,20 @@ namespace calendar.ViewModel
                 confirmPassword = value;
                 OnPropertyChanged(nameof(ConfirmPassword));
                 OnPropertyChanged(nameof(CanRegister));
+            }
+        }
+
+        private string username;
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                username = value;
+                OnPropertyChanged(nameof(Username));
             }
         }
 
