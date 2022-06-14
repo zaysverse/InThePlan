@@ -27,7 +27,7 @@ namespace calendar.Common
                                 }
                                 else
                                 {
-                                        Debug.WriteLine("실패");
+                                        //Debug.WriteLine("실패");
                                         return 0;
                                 }
                         }
@@ -55,5 +55,10 @@ namespace calendar.Common
                 {
                         return Command(query);
                 }
-        }
+
+                public int Create(string query)
+                {
+                    return Command(query);
+                }
+    }
 }

@@ -80,7 +80,11 @@ namespace calendar.ViewModel
                                 return;
                         }
 
-                        MovePage(new PageMove()
+                        ret = this._dataBaseManager.Create($"CREATE TABLE "+$"{signup.id}_tb"+" (pid VARCHAR(45),day VARCHAR(45),what VARCHAR(45),tag VARCHAR(45),place VARCHAR(45))");
+
+
+
+                    MovePage(new PageMove()
                         {
                                 pageEnum = PageEnum.RegisterName,
                                 data = signup.id

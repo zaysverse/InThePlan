@@ -8,5 +8,6 @@ namespace calendar.Interfaces
                 DataTable Select(string query);
                 int Insert(string query);
                 int Update(string query);
-        }
+                int Create(string query);   
+    }
 }

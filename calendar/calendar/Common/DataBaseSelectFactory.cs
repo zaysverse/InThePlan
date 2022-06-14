@@ -15,7 +15,7 @@ namespace calendar.Common
                 {
                         var dt = this._dataBaseManager.Select(Query);
 
-                                return AutoMapper.Mapper.DynamicMap<IDataReader, List<T>>(dt.CreateDataReader());
+                        return AutoMapper.Mapper.DynamicMap<IDataReader, List<T>>(dt.CreateDataReader());
                 }
         }
 }
