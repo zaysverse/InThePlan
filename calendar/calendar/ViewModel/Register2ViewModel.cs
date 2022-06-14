@@ -1,5 +1,6 @@
 ﻿using calendar.Enums;
 using calendar.Interfaces;
+using calendar.Model;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 
@@ -32,7 +33,12 @@ namespace calendar.ViewModel
                                 return;
                         }
 
-                    MovePage(PageEnum.Plan);
+
+                    MovePage(new PageMove()
+                    {
+                        pageEnum = PageEnum.Plan,
+                        data = this._id
+                    }); 
 
                 });
                 public RelayCommand ExitCommand => new RelayCommand(() =>

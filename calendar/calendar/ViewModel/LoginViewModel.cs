@@ -61,7 +61,11 @@ namespace calendar.ViewModel
                         else
                         {
                                 MessageBox.Show("로그인 성공");
-                                MovePage(PageEnum.Plan);
+                                MovePage(new PageMove()
+                                {
+                                    pageEnum = PageEnum.Plan,
+                                    data = this._id
+                                });
                     }
                 });
         }

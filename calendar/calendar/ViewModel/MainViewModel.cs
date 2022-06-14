@@ -58,13 +58,13 @@ namespace calendar.ViewModel
                                                 currentView = new Register2ViewModel(this._dataBaseManager, (string)page.data);
                                                 return;
                                         case PageEnum.Calendar:
-                                            currentView = new CalendarViewModel(this._dataBaseManager);
+                                            currentView = new CalendarViewModel(this._dataBaseManager, (string)page.data);
                                             return;
                                         case PageEnum.Gallery:
-                                            currentView = new GalleryViewModel(this._dataBaseManager);
+                                            currentView = new GalleryViewModel(this._dataBaseManager, (string)page.data);
                                             return;
                                         case PageEnum.Plan:
-                                            currentView = new ViewModels.MainViewModel(this._dataBaseManager);
+                                            currentView = new ViewModels.MainViewModel(this._dataBaseManager, (string)page.data);
                                             return;
                             }
                         });

@@ -1,5 +1,6 @@
 ﻿using calendar.Enums;
 using calendar.Interfaces;
+using calendar.Model;
 using calendar.ViewModel;
 using calendar.ViewModels.Commands;
 using GalaSoft.MvvmLight.Command;
@@ -48,11 +49,12 @@ namespace calendar.ViewModels
         public ObservableCollection<Image> images { get; set; }
         public DeleteImageCommand DeleteImageCommand { get; set; }
 
+        private readonly string _id;
         private IDataBaseManager _dataBaseManager;
-        public GalleryViewModel(IDataBaseManager dataBaseManager)
+        public GalleryViewModel(IDataBaseManager dataBaseManager, string id)
         {
             this._dataBaseManager = dataBaseManager;
-
+            this._id = id;
             NewImage = new Image();
             LoadImageCommand = new LoadImageCommand(this);
             images = new ObservableCollection<Image>();
@@ -95,7 +97,11 @@ namespace calendar.ViewModels
 
         public RelayCommand PlanCommand => new RelayCommand(() =>
         {
-            MovePage(PageEnum.Plan);
+            MovePage(new PageMove()
+            {
+                pageEnum = PageEnum.Plan,
+                data = this._id
+            });
         });
 
     }

@@ -16,6 +16,7 @@ namespace calendar.ViewModels.Commands
         public LoadImageCommand(GalleryViewModel vm)
         {
             VM = vm;
+            
         }
 
         public LoadImageCommand()

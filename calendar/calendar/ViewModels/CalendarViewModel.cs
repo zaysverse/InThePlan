@@ -1,5 +1,6 @@
 ﻿using calendar.Enums;
 using calendar.Interfaces;
+using calendar.Model;
 using calendar.ViewModel;
 using GalaSoft.MvvmLight.Command;
 
@@ -40,18 +41,22 @@ namespace calendar.ViewModels
             set => Set(ref _td4, value);
         }
 
-
+        private readonly string _id;
         private IDataBaseManager _dataBaseManager;
-
-        public CalendarViewModel(IDataBaseManager dataBaseManager)
+        public CalendarViewModel(IDataBaseManager dataBaseManager, string id)
         {
             this._dataBaseManager = dataBaseManager;
+            this._id = id;
 
         }
         
         public RelayCommand PlanCommand => new RelayCommand(() =>
         {
-            MovePage(PageEnum.Plan);
+            MovePage(new PageMove()
+            {
+                pageEnum = PageEnum.Plan,
+                data = this._id
+            });
         });
     }
 }

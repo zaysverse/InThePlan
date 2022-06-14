@@ -14,6 +14,9 @@ using calendar.ViewModel;
 using calendar.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using calendar.Enums;
+using System.Windows;
+using calendar.Common;
+using calendar.Model;
 
 namespace calendar.ViewModels
 {
@@ -106,14 +109,16 @@ namespace calendar.ViewModels
         
         public FixPlanDataButtonCommand FixPlanDataButtonCommand { get; set; }
 
+        private readonly string _id;
         private IDataBaseManager _dataBaseManager;
-        public MainViewModel(IDataBaseManager dataBaseManager)
+        public MainViewModel(IDataBaseManager dataBaseManager, string id)
         {
             this._dataBaseManager = dataBaseManager;
+            this._id = id;
 
             PlanFilter = new ObservableCollection<Plan>();
             DeleteButtonCommand = new DeleteButtonCommand(this);
-
+            ShowPlanData();
             AddPlanData();
 
             PlanAddButtonCommand = new PlanAddButtonCommand(this);
@@ -144,13 +149,38 @@ namespace calendar.ViewModels
             }
         }
 
+        //데이터베이스에 저장된 일정들을 화면에 연결
+        void ShowPlanData()
+        {
+            ObservableCollection<Plan> planData = new ObservableCollection<Plan>();
+
+            planData = new DataBaseSelectFactory<Plan>(this._dataBaseManager)
+                                        .SelectPlan(_id);
+            PlanFilter = planData;
+        }
+
+        //일정 추가
         public void AddPlanData()
         {
             if(textWhat != null)
             {
-                
                 PlanFilter.Add(new Plan { 완료 = false, 날짜 = textDate.ToString("yyyy-MM-dd"), What = textWhat, Tag = textTag, 장소 = textPlace });
-                
+
+
+                //List<Plan> signupMember = new DataBaseSelectFactory<Plan>(this._dataBaseManager)
+                //                        .Select("select *from signup_tb");
+
+                int ret = this._dataBaseManager.Insert($"INSERT INTO " + $"{_id}_tb" + " (day, what, tag, place) VALUES " +
+                                                           $"('{textDate.ToString("yyyy-MM-dd")}'," +
+                                                           $"'{textWhat}'," +
+                                                           $"'{textTag}'," +
+                                                           $"'{textPlace}')");
+
+                if (ret == 0)
+                {
+                    MessageBox.Show("등록에 실패하였습니다.");
+                    return;
+                }
             }
         }
 
@@ -161,10 +191,14 @@ namespace calendar.ViewModels
             set { selectedPlan = value; }
         }
 
+        // 일정 수정
         public void FixPlanData()
         {
             if (selectedPlan != null)
             {
+                new DataBaseSelectFactory<Plan>(this._dataBaseManager)
+                                                .UpdatePlan(_id, selectedPlan,this);
+
                 selectedPlan.날짜 = fixDate.ToString("yyyy-MM-dd");
                 selectedPlan.What = fixWhat;
                 selectedPlan.Tag = fixTag;
@@ -173,22 +207,42 @@ namespace calendar.ViewModels
         }
 
 
+
         public void DeletePlanData()
         {
             if (selectedPlan != null)
             {
+                int ret = this._dataBaseManager.Delete($"DELETE FROM  " + $"{_id}_tb" + " WHERE " +
+                                                           $"day = '{selectedPlan.날짜.ToString()}' AND " +
+                                                           $"what = '{selectedPlan.What}' AND " +
+                                                           $"tag = '{selectedPlan.Tag}' AND " +
+                                                           $"place = '{selectedPlan.장소}'");
+                if (ret == 0)
+                {
+                    MessageBox.Show("등록에 실패하였습니다.");
+                    return;
+                }
                 PlanFilter.Remove(selectedPlan);
+
             }
         }
 
         public RelayCommand CalendarCommand => new RelayCommand(() =>
         {
-            MovePage(PageEnum.Calendar);
+            MovePage(new PageMove()
+            {
+                pageEnum = PageEnum.Calendar,
+                data = this._id
+            });
         });
 
         public RelayCommand GalleryCommand => new RelayCommand(() =>
         {
-            MovePage(PageEnum.Gallery);
+            MovePage(new PageMove()
+            {
+                pageEnum = PageEnum.Gallery,
+                data = this._id
+            });
         });
     }
 }

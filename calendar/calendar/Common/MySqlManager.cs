@@ -6,59 +6,64 @@ using System.Diagnostics;
 
 namespace calendar.Common
 {
-        public class MySqlManager : IDataBaseManager
+    public class MySqlManager : IDataBaseManager
+    {
+        private string connectionPath;
+        public void Load()
         {
-                private string connectionPath;
-                public void Load()
+            connectionPath = DataBaseHelper.CreateDataBase().ToString();
+        }
+        private int Command(string query)
+        {
+            using (var connection = new MySqlConnection(connectionPath))
+            {
+                connection.Open();
+                MySqlCommand command = new MySqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
                 {
-                        connectionPath = DataBaseHelper.CreateDataBase().ToString();
-                }
-                private int Command(string query)
-                {
-                        using (var connection = new MySqlConnection(connectionPath))
-                        {
-                                connection.Open();
-                                MySqlCommand command = new MySqlCommand(query, connection);
-                                if (command.ExecuteNonQuery() == 1)
-                                {
-                                        Debug.WriteLine("성공");
+                    Debug.WriteLine("성공");
 
-                                        return 1;
-                                }
-                                else
-                                {
-                                        //Debug.WriteLine("실패");
-                                        return 0;
-                                }
-                        }
+                    return 1;
                 }
-                public int Insert(string query)
+                else
                 {
-                        return Command(query);
+                    //Debug.WriteLine("실패");
+                    return 0;
                 }
+            }
+        }
+        public int Insert(string query)
+        {
+            return Command(query);
+        }
 
 
-                public DataTable Select(string query)
-                {
-                        DataTable table = new DataTable();
-                        using (var connection = new MySqlConnection(connectionPath))
-                        {
-                                connection.Open();
-                                MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+        public DataTable Select(string query)
+        {
+            DataTable table = new DataTable();
+            using (var connection = new MySqlConnection(connectionPath))
+            {
+                connection.Open();
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
 
-                                adapter.Fill(table);
-                        }
-                        return table;
-                }
+                adapter.Fill(table);
+            }
+            return table;
+        }
 
-                public int Update(string query)
-                {
-                        return Command(query);
-                }
+        public int Update(string query)
+        {
+            return Command(query);
+        }
 
-                public int Create(string query)
-                {
-                    return Command(query);
-                }
+        public int Create(string query)
+        {
+            return Command(query);
+        }
+
+        public int Delete(string query)
+        {
+            return Command(query);
+        }
     }
 }
