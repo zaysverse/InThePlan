@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="calendar.Views.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+    <Grid>
+        <Border Padding="10" CornerRadius="10" />
+        <StackPanel Margin="0,25,0,0" VerticalAlignment="Center">
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="ID" Style="{StaticResource ResourceKey=Login_LableStyle}" />
+                    <TextBox
+                        MaxLength="45"
+                        Style="{StaticResource ResourceKey=Login_TextBoxStyle}"
+                        Text="{Binding id, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <Border Style="{StaticResource Login_textBoderStyle}" />
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="PW" Style="{StaticResource ResourceKey=Login_LableStyle}" />
+                    <TextBox
+                        Name="psBox"
+                        MaxLength="45"
+                        Style="{StaticResource Login_TextBoxStyle}"
+                        Text="{Binding pw, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <Border Style="{StaticResource Login_textBoderStyle}" />
+            </StackPanel>
+            <Grid Margin="0,60,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Command="{Binding RegisterCommand}"
+                    CommandParameter="Reg"
+                    Content="REGISTER"
+                    Style="{StaticResource Login_ButtonStyle}" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding LoginCommand}"
+                    CommandParameter="Ent"
+                    Content="LOGIN"
+                    Style="{StaticResource Login_ButtonStyle}" />
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

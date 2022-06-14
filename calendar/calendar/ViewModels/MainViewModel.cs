@@ -1,4 +1,4 @@
-﻿using Listview_Filter_Test.Models;
+﻿using calendar.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using Listview_Filter_Test.ViewModels.Commands;
+using calendar.ViewModels.Commands;
 using System.Windows.Controls;
+using calendar.ViewModel;
+using calendar.Interfaces;
+using GalaSoft.MvvmLight.Command;
+using calendar.Enums;
 
-namespace Listview_Filter_Test.ViewModels
+namespace calendar.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : CommonViewModelBase
     {
         #region Properties
         private string _filter = string.Empty;
@@ -102,8 +106,11 @@ namespace Listview_Filter_Test.ViewModels
 
         public FixPlanDataButtonCommand FixPlanDataButtonCommand { get; set; }
 
-        public MainViewModel()
+        private IDataBaseManager _dataBaseManager;
+        public MainViewModel(IDataBaseManager dataBaseManager)
         {
+            this._dataBaseManager = dataBaseManager;
+
             PlanFilter = new ObservableCollection<Plan>();
             DeleteButtonCommand = new DeleteButtonCommand(this);
 
@@ -173,5 +180,15 @@ namespace Listview_Filter_Test.ViewModels
                 PlanFilter.Remove(selectedPlan);
             }
         }
+
+        public RelayCommand CalendarCommand => new RelayCommand(() =>
+        {
+            MovePage(PageEnum.Calendar);
+        });
+
+        public RelayCommand GalleryCommand => new RelayCommand(() =>
+        {
+            MovePage(PageEnum.Gallery);
+        });
     }
 }

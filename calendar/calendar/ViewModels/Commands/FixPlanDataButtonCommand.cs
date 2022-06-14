@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Listview_Filter_Test.ViewModels.Commands
+namespace calendar.ViewModels.Commands
 {
     public class FixPlanDataButtonCommand : ICommand
     {

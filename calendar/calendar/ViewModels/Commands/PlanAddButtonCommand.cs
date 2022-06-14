@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 
-namespace Listview_Filter_Test.ViewModels.Commands
+namespace calendar.ViewModels.Commands
 {
     public class PlanAddButtonCommand : ICommand
     {

@@ -1,5 +1,5 @@
-﻿using Listview_Filter_Test.Models;
-using Listview_Filter_Test.ViewModels;
+﻿using calendar.Models;
+using calendar.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +15,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Listview_Filter_Test.Views
+namespace calendar.Views
 {
     /// <summary>
     /// PlanWindow1.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class PlanWindow1 : Window
+    public partial class PlanWindow1 : UserControl
     {
         //private MainViewModel _viewModel;
         public PlanWindow1()
@@ -86,19 +86,5 @@ namespace Listview_Filter_Test.Views
             }
         }
 
-        private void ShowCalendar_Click(object sender, RoutedEventArgs e)
-        {
-            Listview_Filter_Test.Views.CalendarWindow SR = new Listview_Filter_Test.Views.CalendarWindow();
-
-            SR.ShowDialog();
-        }
-
-
-        private void ShowGalleryButton_Click(object sender, RoutedEventArgs e)
-        {
-            Listview_Filter_Test.Views.GalleryWindow SR = new Listview_Filter_Test.Views.GalleryWindow();
-
-            SR.ShowDialog();
-        }
     }
 }

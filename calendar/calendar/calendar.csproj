@@ -36,9 +36,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.29.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,28 +78,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DB_Linkage\MySQLManager.cs" />
-    <Compile Include="Model\UserInformation.cs" />
-    <Compile Include="Pages\Intro.xaml.cs">
+    <Compile Include="Common\Config.cs" />
+    <Compile Include="Common\DataBaseSelectFactory.cs" />
+    <Compile Include="Common\MySqlManager.cs" />
+    <Compile Include="Enums\PageEnum.cs" />
+    <Compile Include="Helper\DataBaseHelper.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Interfaces\IDataBaseManager.cs" />
+    <Compile Include="Models\Plan.cs" />
+    <Compile Include="Model\PageMove.cs" />
+    <Compile Include="Model\signup.cs" />
+    <Compile Include="ViewModels\CalendarViewModel.cs" />
+    <Compile Include="ViewModels\Commands\DeleteButtonCommand.cs" />
+    <Compile Include="ViewModels\Commands\DeleteImageCommand.cs" />
+    <Compile Include="ViewModels\Commands\FixPlanDataButtonCommand.cs" />
+    <Compile Include="ViewModels\Commands\LoadImageCommand.cs" />
+    <Compile Include="ViewModels\Commands\PlanAddButtonCommand.cs" />
+    <Compile Include="ViewModels\GalleryViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModel\CommonViewModelBase.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\Register2ViewModel.cs" />
+    <Compile Include="Views\CalendarWindow.xaml.cs">
+      <DependentUpon>CalendarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GalleryWindow.xaml.cs">
+      <DependentUpon>GalleryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Intro.xaml.cs">
       <DependentUpon>Intro.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Login.xaml.cs">
+    <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Register.xaml.cs">
+    <Compile Include="Views\PlanWindow1.xaml.cs">
+      <DependentUpon>PlanWindow1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Register2.xaml.cs">
+    <Compile Include="Views\Register2.xaml.cs">
       <DependentUpon>Register2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Commands\LoginCommand.cs" />
-    <Compile Include="ViewModel\Commands\PageNavigateCommand.cs" />
-    <Compile Include="ViewModel\Commands\RegeisterCommand.cs" />
-    <Compile Include="ViewModel\Login.cs" />
-    <Compile Include="ViewModel\PageNavigateVM.cs" />
-    <Compile Include="ViewModel\Register.cs" />
-    <Compile Include="ViewModel\Register2.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,19 +135,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Intro.xaml">
+    <Page Include="Views\CalendarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GalleryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Intro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Login.xaml">
+    <Page Include="Views\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Register.xaml">
+    <Page Include="Views\PlanWindow1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Register2.xaml">
+    <Page Include="Views\Register2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,6 +182,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,10 +191,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Converters\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\close.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -145,6 +199,17 @@
     <Resource Include="Images\minimize.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
+      <Link>AutoMapper.Net4.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Views\Icons\icons8-gallery-96.png" />
+    <Resource Include="Views\Icons\icons8-planner-96.png" />
+    <Resource Include="Views\Icons\icons8-remove-96.png" />
+    <Resource Include="Views\Icons\icons8-support-96.png" />
+    <Resource Include="Views\Icons\icons8-todo-list-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

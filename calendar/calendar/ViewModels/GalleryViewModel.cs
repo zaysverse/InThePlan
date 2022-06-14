@@ -1,4 +1,8 @@
-﻿using Listview_Filter_Test.ViewModels.Commands;
+﻿using calendar.Enums;
+using calendar.Interfaces;
+using calendar.ViewModel;
+using calendar.ViewModels.Commands;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -9,9 +13,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace Listview_Filter_Test.ViewModels
+namespace calendar.ViewModels
 {
-    class GalleryViewModel
+    class GalleryViewModel : CommonViewModelBase
     {
         private Image newImage;
 
@@ -44,8 +48,11 @@ namespace Listview_Filter_Test.ViewModels
         public ObservableCollection<Image> images { get; set; }
         public DeleteImageCommand DeleteImageCommand { get; set; }
 
-        public GalleryViewModel()
+        private IDataBaseManager _dataBaseManager;
+        public GalleryViewModel(IDataBaseManager dataBaseManager)
         {
+            this._dataBaseManager = dataBaseManager;
+
             NewImage = new Image();
             LoadImageCommand = new LoadImageCommand(this);
             images = new ObservableCollection<Image>();
@@ -85,6 +92,11 @@ namespace Listview_Filter_Test.ViewModels
                 images.RemoveAt(0);
             }
         }
-        
+
+        public RelayCommand PlanCommand => new RelayCommand(() =>
+        {
+            MovePage(PageEnum.Plan);
+        });
+
     }
 }

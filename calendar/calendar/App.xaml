@@ -1,101 +1,125 @@
-﻿<Application
+<Application
     x:Class="calendar.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:calendar"
     xmlns:vm="clr-namespace:calendar.ViewModel"
+    d1p1:Ignorable="d"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <vm:PageNavigateVM x:Key="pvm" />
-
-        <SolidColorBrush x:Key="Intro_BackgroundColor1" Color="#99FEFF" />
-        <SolidColorBrush x:Key="Intro_BackgroundColor2" Color="#B983FF" />
-
-        <!--  커스텀 윈도우 : 최소화, 닫기  -->
-        <Style x:Key="iconApp" TargetType="Image">
-            <Setter Property="Opacity" Value="0.3" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="RenderTransform">
-                        <Setter.Value>
-                            <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-
-        <!--  textbox,passwordbox 둘 다 사용할 수 있게 TargetType을 상위클래스인 Control로 설정  -->
-        <Style x:Key="Login_TextBoxStyle" TargetType="Control">
-            <Setter Property="Width" Value="200" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="Opacity" Value="0.5" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
-        <Style x:Key="Login_textBoderStyle" TargetType="Border">
-            <Setter Property="Width" Value="210" />
-            <Setter Property="Height" Value="2" />
-            <Setter Property="Background" Value="white" />
-            <Setter Property="Opacity" Value="0.5" />
-        </Style>
-        <Style x:Key="Login_ButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Opacity" Value="0.5" />
-        </Style>
-
-        <!--  Register Page  -->
-        <Style x:Key="Register_textBoxStyle" TargetType="Control">
-            <Setter Property="Width" Value="200" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="Opacity" Value="0.25" />
-            <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="FontWeight" Value="Light" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Margin" Value="0,15,0,0" />
-        </Style>
-
-        <Style x:Key="Register_TextBlockStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontFamily" Value="Helvetica" />
-            <Setter Property="FontWeight" Value="Thin" />
-            <Setter Property="Opacity" Value="0.7" />
-            <Setter Property="Margin" Value="0,0,0,0" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-        </Style>
-
-        <Style x:Key="Register_ButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="white" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Opacity" Value="0.5" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="30" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Margin" Value="0,5,0,0" />
-        </Style>
-
-
+        <ResourceDictionary>
+            <Color x:Key="Intro_BackgroundColor1">#99FEFF</Color>
+            <Color x:Key="Intro_BackgroundColor2">#B983FF</Color>
+            <!--  커스텀 윈도우 : 최소화, 닫기  -->
+            <Style x:Key="iconApp" TargetType="Image">
+                <Setter Property="Opacity" Value="0.3" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!--  textbox,passwordbox 둘 다 사용할 수 있게 TargetType을 상위클래스인 Control로 설정  -->
+            <Style x:Key="Login_TextBoxStyle" TargetType="Control">
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="FontFamily" Value="Helvetica" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="Light" />
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+            <Style x:Key="Login_LableStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="FontFamily" Value="Helvetica" />
+                <Setter Property="FontWeight" Value="Light" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+            <Style x:Key="Login_textBoderStyle" TargetType="Border">
+                <Setter Property="Width" Value="210" />
+                <Setter Property="Height" Value="2" />
+                <Setter Property="Background" Value="white" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+            <Style x:Key="Login_ButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+            <!--  Register Page  -->
+            <Style x:Key="Register_textBoxStyle" TargetType="Control">
+                <Setter Property="Width" Value="200" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Opacity" Value="0.25" />
+                <Setter Property="FontFamily" Value="Helvetica" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="Light" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Margin" Value="0,15,0,0" />
+            </Style>
+            <Style x:Key="Register_TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="Helvetica" />
+                <Setter Property="FontWeight" Value="Thin" />
+                <Setter Property="Opacity" Value="0.7" />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+            <Style x:Key="Register_ButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="white" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="Width" Value="100" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="0,5,0,0" />
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush>
+                            <GradientStop Offset="0.0" Color="{DynamicResource Intro_BackgroundColor1}" />
+                            <GradientStop Offset="1" Color="{DynamicResource Intro_BackgroundColor2}" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="tdlistTxtBox" TargetType="TextBox">
+                <Setter Property="Opacity" Value="1"/>
+                <Style.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsFocused" Value="False" />
+                            <Condition Property="Text" Value=""/>
+                        </MultiTrigger.Conditions>
+                        <Setter Property="Opacity" Value="0"/>
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+        </ResourceDictionary>
     </Application.Resources>
-
-
 </Application>

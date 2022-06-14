@@ -12,23 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Listview_Filter_Test.Views
+namespace calendar.Views 
 {
     /// <summary>
     /// CalendarWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class CalendarWindow : Window
+    public partial class CalendarWindow : UserControl
     {
         public CalendarWindow()
         {
             InitializeComponent();
         }
 
-        private void ShowPlan_Click(object sender, RoutedEventArgs e)
-        {
-            Listview_Filter_Test.Views.PlanWindow1 SR = new Listview_Filter_Test.Views.PlanWindow1();
 
-            SR.ShowDialog();
-        }
     }
 }

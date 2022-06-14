@@ -1,138 +1,280 @@
-﻿<Window x:Class="Listview_Filter_Test.Views.PlanWindow1"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Listview_Filter_Test.Views"
-        xmlns:vm="clr-namespace:Listview_Filter_Test.ViewModels"
-        mc:Ignorable="d"
-        Title="PLAN" Height="900" Width="900" ResizeMode="NoResize">
+﻿<UserControl
+    x:Class="calendar.Views.PlanWindow1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:calendar.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:calendar.ViewModels"
+    d:DesignHeight="600"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+    <Grid>
+        <Border CornerRadius="10" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-    <Window.Resources>
-        <vm:MainViewModel x:Key="vm"/>
-    </Window.Resources>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="6"
+                Height="30"
+                Margin="25,5,0,5"
+                Orientation="Horizontal">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,3,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="User"
+                    FontFamily="Helvetica"
+                    FontSize="16"
+                    FontWeight="SemiBold"
+                    Foreground="DarkViolet"
+                    Opacity="0.5" />
+                <Button
+                    x:Name="캘린더"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding CalendarCommand}">
+                    <Image Source="Icons/icons8-planner-96.png" />
+                </Button>
+                <Button
+                    x:Name="갤러리"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding GalleryCommand}">
+                    <Image Source="Icons/icons8-gallery-96.png" />
+                </Button>
+            </StackPanel>
 
-    <Grid DataContext="{StaticResource vm}">
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#99FEFF" Offset="0.0"/>
-                <GradientStop Color="#B983FF" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="날짜" />
+                <DatePicker
+                    x:Name="dtp01"
+                    Width="120"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    SelectedDate="{Binding Path=TextDate}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="내용" />
+                <TextBox
+                    x:Name="내용입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=TextWhat}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="태그" />
+                <TextBox
+                    x:Name="태그입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=TextTag}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="장소" />
+                <TextBox
+                    x:Name="장소입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=TextPlace}" />
+                <Button
+                    Margin="5"
+                    Background="#B983FF"
+                    BorderBrush="Transparent"
+                    Command="{Binding Path=PlanAddButtonCommand}"
+                    Content="일정추가">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="5"
+                Margin="0,0,0,15"
+                Orientation="Horizontal">
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="날짜" />
+                <DatePicker
+                    x:Name="dtp02"
+                    Width="120"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    SelectedDate="{Binding Path=FixDate}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="내용" />
+                <TextBox
+                    x:Name="수정내용입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=FixWhat}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="태그" />
+                <TextBox
+                    x:Name="수정태그입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=FixTag}" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="장소" />
+                <TextBox
+                    x:Name="수정장소입력"
+                    Width="175"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Text="{Binding Path=FixPlace}" />
+                <Button
+                    Margin="5"
+                    Background="#B983FF"
+                    BorderBrush="Transparent"
+                    Command="{Binding Path=FixPlanDataButtonCommand}"
+                    Content="일정수정">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" Background="White">
-            <Label Content="User" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Margin="10"/>
-            <Button x:Name="캘린더" Grid.Row="0" Grid.Column="1" Background="Transparent" BorderBrush="Transparent"
-                    Click="ShowCalendar_Click">
-                <Image Source="Icons/icons8-planner-96.png"/>
-            </Button>
-            <Button x:Name="갤러리" Click="ShowGalleryButton_Click" Grid.Row="0" Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="Icons/icons8-gallery-96.png">
-                </Image>
-            </Button>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="4">
-            <TextBlock Text="날짜" Margin="5" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dtp01" Width="120" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" SelectedDate="{Binding Source={StaticResource vm}, Path=TextDate}"/>
-            <TextBlock Text="내용" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="내용입력" Width="175" Margin="5" VerticalAlignment="Center" Text="{Binding Source={StaticResource vm}, Path=TextWhat}"/>
-            <TextBlock Text="태그" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="태그입력" Width="175" Margin="5" VerticalAlignment="Center" Text="{Binding Source={StaticResource vm}, Path=TextTag}"/>
-            <TextBlock Text="장소" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="장소입력" Width="175" Margin="5" VerticalAlignment="Center" Text="{Binding Source={StaticResource vm}, Path=TextPlace}"/>
-            <Button Content="일정추가" Margin="5" Background="#B983FF" BorderBrush="Transparent" Command="{Binding Source={StaticResource vm}, Path=PlanAddButtonCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="5">
-            <TextBlock Text="날짜" Margin="5" VerticalAlignment="Center"/>
-            <DatePicker x:Name="dtp02" Width="120" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" SelectedDate="{Binding Source={StaticResource vm}, Path=FixDate}"/>
-            <TextBlock Text="내용" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="수정내용입력" Width="175" Margin="5" VerticalAlignment="Center" Text="{Binding Source={StaticResource vm}, Path=FixWhat}"/>
-            <TextBlock Text="태그" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="수정태그입력" Width="175" Margin="5" VerticalAlignment="Center" Text="{Binding Source={StaticResource vm}, Path=FixTag}"/>
-            <TextBlock Text="장소" Margin="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="수정장소입력" Width="175" Margin="5" VerticalAlignment="Center"  Text="{Binding Source={StaticResource vm}, Path=FixPlace}"/>
-            <Button Content="일정수정" Margin="5" Background="#B983FF" BorderBrush="Transparent" Command="{Binding Source={StaticResource vm}, Path=FixPlanDataButtonCommand}">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </StackPanel>
-
-        <!--<Button Name="AddButton" Click="AddButton_Click" Content="+일정추가" Margin="5,5" Grid.Row="2" Background="#B983FF" BorderBrush="Transparent" FontSize="20">
+            <!--<Button Name="AddButton" Click="AddButton_Click" Content="+일정추가" Margin="5,5" Grid.Row="2" Background="#B983FF" BorderBrush="Transparent" FontSize="20">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>-->
-        
-        <TextBox x:Name="검색텍스트박스" Width="975" Grid.Row="3" Height="30" Padding="5" FontSize="14" HorizontalAlignment="Center" Margin="20,0,20,0" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Text="     검색할 내용을 입력해주세요"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       IsHitTestVisible="False"
-                       Foreground="Gray"
-                       Grid.Row="3"
-                       Margin="5">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="Gray"   />
-                    <Setter Property="Visibility" Value="Hidden" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=검색텍스트박스}" Value="">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
 
-        <ScrollViewer VerticalScrollBarVisibility="Visible" MinWidth="10" Grid.Row="1" Margin="20">
-            <ListView x:Name="listlist" GridViewColumnHeader.Click="gridViewColumnHeader_Click" ItemsSource="{Binding Source={StaticResource vm}, Path=PlanCollection}" SelectedItem="{Binding Source={StaticResource vm}, Path=SelectedCity}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="완료" Width="38">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding 완료}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="날짜" Width="180" DisplayMemberBinding="{Binding 날짜}"/>
-                        <GridViewColumn Header="내용" Width="250" DisplayMemberBinding="{Binding What}"/>
-                        <GridViewColumn Header="태그" Width="150" DisplayMemberBinding="{Binding Tag}"/>
-                        <GridViewColumn Header="장소" Width="100" DisplayMemberBinding="{Binding 장소}"/>
-                        <GridViewColumn Header="삭제" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Background="Transparent" BorderBrush="Transparent"
-                                            Command="{Binding Source={StaticResource vm}, Path=DeleteButtonCommand}">
-                                        <Image Source="Icons/icons8-remove-96.png">
-                                        </Image>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <!--<GridViewColumn Header="상세" Width="100">
+            <TextBox
+                x:Name="검색텍스트박스"
+                Grid.Row="3"
+                Width="975"
+                Height="30"
+                Margin="20,0,20,10"
+                Padding="5"
+                HorizontalAlignment="Center"
+                FontSize="14"
+                Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Grid.Row="3"
+                Margin="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Foreground="Gray"
+                IsHitTestVisible="False"
+                Text="     검색할 내용을 입력해주세요">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Gray" />
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=검색텍스트박스}" Value="">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <ScrollViewer
+                Grid.Row="1"
+                MinWidth="10"
+                Margin="20,0,20,15"
+                VerticalScrollBarVisibility="Visible">
+                <ListView
+                    x:Name="listlist"
+                    GridViewColumnHeader.Click="gridViewColumnHeader_Click"
+                    ItemsSource="{Binding Path=PlanCollection}"
+                    SelectedItem="{Binding Path=SelectedCity}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Height" Value="30" />
+                            <Setter Property="Background" Value="White" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="38" Header="완료">
+                                <GridViewColumn.HeaderContainerStyle>
+                                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                                        <!--  Set any properties you want to set  -->
+                                        <Setter Property="Background" Value="White" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Style>
+                                </GridViewColumn.HeaderContainerStyle>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding 완료}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn
+                                Width="180"
+                                DisplayMemberBinding="{Binding 날짜}"
+                                Header="날짜" />
+                            <GridViewColumn
+                                Width="250"
+                                DisplayMemberBinding="{Binding What}"
+                                Header="내용" />
+                            <GridViewColumn
+                                Width="150"
+                                DisplayMemberBinding="{Binding Tag}"
+                                Header="태그" />
+                            <GridViewColumn
+                                Width="100"
+                                DisplayMemberBinding="{Binding 장소}"
+                                Header="장소" />
+                            <GridViewColumn Width="100" Header="삭제">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{Binding Path=DeleteButtonCommand}">
+                                            <Image Source="Icons/icons8-remove-96.png" />
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <!--<GridViewColumn Header="상세" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="Mod" Background="Transparent" BorderBrush="Transparent">
@@ -142,9 +284,10 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>-->
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
     </Grid>
-</Window>
+</UserControl>

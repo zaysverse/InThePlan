@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Listview_Filter_Test.Models
+namespace calendar.Models
 {
     public class Plan : INotifyPropertyChanged
     {
