@@ -1,0 +1,142 @@
+﻿<Window x:Class="Listview_Filter_Test.Views.CalendarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Listview_Filter_Test.Views"
+        xmlns:vm="clr-namespace:Listview_Filter_Test.ViewModels"
+        xmlns:comm="clr-namespace:Listview_Filter_Test.ViewModels.Commands"
+        mc:Ignorable="d"
+        Title="CalendarWindow" Height="600" Width="900">
+
+    <Grid>
+        <!--배경 색 설정-->
+        <Border>
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0.0" Color="#99FEFF"/>
+                    <GradientStop Offset="1" Color="#B983FF"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="달력 Calendar" FontSize="30" FontWeight="SemiBold" VerticalAlignment="Center" Margin="20 0 10 0"/>
+                <Button x:Name="플래너" Background="Transparent"
+                        Click="ShowPlan_Click">
+                    <Image Source="Icons/icons8-todo-list-96.png" Margin="10 0 0 0"/>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <!--<DockPanel>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem Header="설정">
+                        </MenuItem>
+                        <MenuItem Header="플래너 창">
+                        </MenuItem>
+                        <MenuItem Header="갤러리 창">
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>-->
+
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <Viewbox>
+                        <Calendar Height="258" Width="192" />
+                    </Viewbox>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!--ToDo 리스트 창-->
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <!--<DockPanel>
+                    <Menu DockPanel.Dock="Top">
+                        <MenuItem Header="">
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>-->
+
+                <TextBlock Text="To Do List" Foreground="Black" FontSize="30" 
+                           FontWeight="SemiBold" Margin="20 10 20 20">
+                </TextBlock>
+
+                <Separator Margin="15 0 15 0"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--To Do list 구현 부분-->
+                    <Border Grid.Row="0" Background="White" HorizontalAlignment="Center" Width="200"
+                        Margin="0 20 0 20" Padding="10 15 10 15" BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid>
+                            <CheckBox x:Name="checkBox1" VerticalAlignment="Center" />
+                            <TextBox Text="할 일을 입력하세요" FontStyle="Italic" Foreground="LightGray" Focusable="False" Margin="25,0,15,0">
+                            </TextBox>
+                            <TextBox Text="{Binding TextProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource tdlistTxtBox}" Focusable="True" Margin="25,0,15,0">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="1" Background="White" HorizontalAlignment="Center" Width="200"
+                        Margin="0 20 0 20" Padding="10 15 10 15" BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid>
+                            <CheckBox x:Name="checkBox2" 
+                                      VerticalAlignment="Center"/>
+                            <TextBox Text="할 일을 입력하세요" FontStyle="Italic" Foreground="LightGray" Focusable="False" Margin="25,0,15,0">
+                            </TextBox>
+                            <TextBox Text="{Binding TextProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource tdlistTxtBox}" Focusable="True" Margin="25,0,15,0">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="2" Background="White" HorizontalAlignment="Center" Width="200"
+                        Margin="0 20 0 20" Padding="10 15 10 15" BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid>
+                            <CheckBox VerticalAlignment="Center" />
+                            <TextBox Text="할 일을 입력하세요" FontStyle="Italic" Foreground="LightGray" Focusable="False" Margin="25,0,15,0">
+                            </TextBox>
+                            <TextBox Text="{Binding TextProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource tdlistTxtBox}" Focusable="True" Margin="25,0,15,0">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="3" Background="White" HorizontalAlignment="Center" Width="200"
+                        Margin="0 20 0 20" Padding="10 15 10 15" BorderBrush="Black"
+                        BorderThickness="1">
+                        <Grid>
+                            <CheckBox VerticalAlignment="Center" />
+                            <TextBox Text="할 일을 입력하세요" FontStyle="Italic" Foreground="LightGray" Focusable="False" Margin="25,0,15,0">
+                            </TextBox>
+                            <TextBox Text="{Binding TextProperty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource tdlistTxtBox}" Focusable="True" Margin="25,0,15,0">
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
