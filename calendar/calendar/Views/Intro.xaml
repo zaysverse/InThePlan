@@ -8,7 +8,7 @@
     d:DesignWidth="900"
     mc:Ignorable="d">
     <Grid>
-        <Border CornerRadius="10"/>
+        <Border Style="{StaticResource BoderStyle}"  Padding="10" CornerRadius="10" />
         <StackPanel
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

@@ -103,7 +103,7 @@ namespace calendar.ViewModels
         public DeleteButtonCommand DeleteButtonCommand { get; set; }
 
         public PlanAddButtonCommand PlanAddButtonCommand { get; set; }
-
+        
         public FixPlanDataButtonCommand FixPlanDataButtonCommand { get; set; }
 
         private IDataBaseManager _dataBaseManager;

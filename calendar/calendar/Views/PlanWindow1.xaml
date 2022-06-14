@@ -10,7 +10,10 @@
     d:DesignWidth="900"
     mc:Ignorable="d">
     <Grid>
-        <Border CornerRadius="10" />
+        <Border
+            Padding="10"
+            CornerRadius="10"
+            Style="{StaticResource BoderStyle}" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -268,7 +271,7 @@
                                         <Button
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Command="{Binding Path=DeleteButtonCommand}">
+                                            Command="{Binding Path=DataContext.DeleteButtonCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}">
                                             <Image Source="Icons/icons8-remove-96.png" />
                                         </Button>
                                     </DataTemplate>

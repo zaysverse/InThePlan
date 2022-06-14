@@ -11,7 +11,10 @@
     d:DesignWidth="900"
     mc:Ignorable="d">
     <Grid>
-        <Border Padding="10" CornerRadius="10" />
+        <Border
+            Padding="10"
+            CornerRadius="10"
+            Style="{StaticResource BoderStyle}" />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />

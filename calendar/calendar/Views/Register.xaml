@@ -9,7 +9,7 @@
     xmlns:w="clr-namespace:calendar.Helper"
     mc:Ignorable="d">
     <Grid>
-        <Border CornerRadius="10"/>
+        <Border Style="{StaticResource BoderStyle}"  Padding="10" CornerRadius="10" />
         <Grid
             Margin="0,0,10,65"
             HorizontalAlignment="Center"

@@ -9,11 +9,13 @@
     xmlns:vm="clr-namespace:calendar.ViewModels"
     d:DesignHeight="600"
     d:DesignWidth="900"
-    Background="Transparent"
     mc:Ignorable="d">
 
     <Grid>
-        <Border Padding="10" CornerRadius="10" />
+        <Border
+            Padding="10"
+            CornerRadius="10"
+            Style="{StaticResource BoderStyle}" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />

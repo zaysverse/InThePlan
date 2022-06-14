@@ -39,7 +39,7 @@ namespace calendar.Views
             GridViewColumnHeader clickedGridViewColumnHeader = e.OriginalSource as GridViewColumnHeader;
 
             ListSortDirection listSortDirection;
-
+            
             if (clickedGridViewColumnHeader != null)
             {
                 if (clickedGridViewColumnHeader.Role != GridViewColumnHeaderRole.Padding)

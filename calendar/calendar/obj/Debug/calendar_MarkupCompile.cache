@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\study\Windows\project\calendar\calendar\obj\Debug\
+E:\study\Windows\calendar\calendar\calendar\obj\Debug\
 calendar
 none
 false
 DEBUG;TRACE
-E:\study\Windows\project\calendar\calendar\App.xaml
+E:\study\Windows\calendar\calendar\calendar\App.xaml
 8941604810
 1-1016354651
 362036296789
-125-703485755
+125-241622054
 MainWindow.xaml;Views\CalendarWindow.xaml;Views\GalleryWindow.xaml;Views\Intro.xaml;Views\Login.xaml;Views\PlanWindow1.xaml;Views\Register.xaml;Views\Register2.xaml;
 
 False

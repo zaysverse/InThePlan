@@ -48,7 +48,7 @@ namespace calendar.ViewModels
             this._dataBaseManager = dataBaseManager;
 
         }
-
+        
         public RelayCommand PlanCommand => new RelayCommand(() =>
         {
             MovePage(PageEnum.Plan);
