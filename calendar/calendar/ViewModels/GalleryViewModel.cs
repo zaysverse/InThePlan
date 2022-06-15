@@ -1,4 +1,5 @@
-﻿using calendar.Enums;
+﻿using calendar.Common;
+using calendar.Enums;
 using calendar.Interfaces;
 using calendar.Model;
 using calendar.ViewModel;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace calendar.ViewModels
@@ -59,6 +61,8 @@ namespace calendar.ViewModels
             NewImage = new Image();
             LoadImageCommand = new LoadImageCommand(this);
             images = new ObservableCollection<Image>();
+            ShowImage();
+
             DeleteImageCommand = new DeleteImageCommand(this);
 
         }
@@ -79,8 +83,32 @@ namespace calendar.ViewModels
 
                     images.Add(new Image() { Source = NewImage.Source });
 
+                    var bitmap = new BitmapImage(fileUri);
 
+                    var buffer = GetImageBuffer(bitmap, new JpegBitmapEncoder());
+                    this._dataBaseManager.SaveImg(buffer);
                 }
+            }
+        }
+
+        public void ShowImage()
+        {
+            ObservableCollection<BitmapImage> imgCol = new DataBaseSelectFactory<BitmapImage>(this._dataBaseManager).SelectImg();
+            
+            for(int i = 0; i < imgCol.Count(); i++)
+            {
+                images.Add(new Image() { Source = imgCol.ElementAt(i) }) ;
+            }
+        }
+
+        public byte[] GetImageBuffer(BitmapSource bitmap, BitmapEncoder encoder)
+        {
+            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+            using (var stream = new MemoryStream())
+            {
+                encoder.Save(stream);
+                return stream.ToArray();
             }
         }
 
@@ -93,6 +121,7 @@ namespace calendar.ViewModels
             else
             {
                 images.RemoveAt(0);
+                this._dataBaseManager.Delete($"DELETE FROM img_tb LIMIT 1");
             }
         }
 

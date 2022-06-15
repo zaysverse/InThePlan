@@ -65,5 +65,19 @@ namespace calendar.Common
         {
             return Command(query);
         }
+
+        public void SaveImg(byte[] data)
+        {       
+            using (var connection = new MySqlConnection(connectionPath))
+            {
+                connection.Open();
+                using (var cmd = new MySqlCommand("INSERT INTO img_tb SET img = @image", connection))
+                {
+                    cmd.Parameters.Add("@image", MySqlDbType.Blob).Value = data;
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+        }
     }
 }

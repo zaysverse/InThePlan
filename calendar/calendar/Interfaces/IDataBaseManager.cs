@@ -10,5 +10,6 @@ namespace calendar.Interfaces
         int Update(string query);
         int Create(string query);
         int Delete(string query);
+        void SaveImg(byte[] data);
     }
 }
