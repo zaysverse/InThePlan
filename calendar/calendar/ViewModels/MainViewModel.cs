@@ -115,7 +115,7 @@ namespace calendar.ViewModels
         {
             this._dataBaseManager = dataBaseManager;
             this._id = id;
-
+            
             PlanFilter = new ObservableCollection<Plan>();
             DeleteButtonCommand = new DeleteButtonCommand(this);
             ShowPlanData();

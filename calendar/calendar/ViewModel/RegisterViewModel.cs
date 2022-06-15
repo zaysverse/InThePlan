@@ -80,8 +80,12 @@ namespace calendar.ViewModel
                                 return;
                         }
 
+                        //plan Table
                         ret = this._dataBaseManager.Create($"CREATE TABLE "+$"{signup.id}_tb"+" (day VARCHAR(45),what VARCHAR(45),tag VARCHAR(45),place VARCHAR(45))");
-
+                        //calendar Table
+                        ret = this._dataBaseManager.Create($"CREATE TABLE " + $"{signup.id}_tb_c" + " (td1 VARCHAR(45),td2 VARCHAR(45),td3 VARCHAR(45),td4 VARCHAR(45))");
+                        //gallery Table
+                        //ret = this._dataBaseManager.Create($"CREATE TABLE " + $"{signup.id}_tb_td" + " (td1 VARCHAR(45),td2 VARCHAR(45),td3 VARCHAR(45),td4 VARCHAR(45))");
 
 
                     MovePage(new PageMove()

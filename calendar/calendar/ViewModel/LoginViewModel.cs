@@ -21,7 +21,6 @@ namespace calendar.ViewModel
                 }
 
                 private string _pw;
-
                 public string pw
                 {
                         get => _pw;

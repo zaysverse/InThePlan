@@ -37,19 +37,20 @@
                     Margin="0,3,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Content="User"
+                    Content="IN THE PLAN"
                     FontFamily="Helvetica"
                     FontSize="16"
                     FontWeight="SemiBold"
-                    Foreground="DarkViolet"
-                    Opacity="0.5" />
+                    Foreground="white"
+                    Opacity="0.7" />
                 <Button
                     x:Name="캘린더"
                     Grid.Row="0"
                     Grid.Column="1"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Command="{Binding CalendarCommand}">
+                    Command="{Binding CalendarCommand}"
+                    Opacity="0.7">
                     <Image Source="Icons/icons8-planner-96.png" />
                 </Button>
                 <Button
@@ -58,15 +59,21 @@
                     Grid.Column="1"
                     Background="Transparent"
                     BorderBrush="Transparent"
-                    Command="{Binding GalleryCommand}">
+                    Command="{Binding GalleryCommand}"
+                    Opacity="0.7">
                     <Image Source="Icons/icons8-gallery-96.png" />
                 </Button>
             </StackPanel>
 
-            <StackPanel Grid.Row="4" Orientation="Horizontal">
+            <StackPanel
+                Grid.Row="4"
+                Margin="10,0"
+                Orientation="Horizontal">
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="날짜" />
                 <DatePicker
                     x:Name="dtp01"
@@ -74,30 +81,39 @@
                     Margin="5"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     SelectedDate="{Binding Path=TextDate, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="내용" />
                 <TextBox
                     x:Name="내용입력"
                     Width="175"
                     Margin="5"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     Text="{Binding Path=TextWhat, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="태그" />
                 <TextBox
                     x:Name="태그입력"
                     Width="175"
                     Margin="5"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     Text="{Binding Path=TextTag, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="장소" />
                 <TextBox
                     x:Name="장소입력"
@@ -110,7 +126,9 @@
                     Background="#B983FF"
                     BorderBrush="Transparent"
                     Command="{Binding Path=PlanAddButtonCommand}"
-                    Content="일정추가">
+                    Content="일정추가"
+                    Foreground="white"
+                    Opacity="0.6">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5" />
@@ -121,11 +139,13 @@
 
             <StackPanel
                 Grid.Row="5"
-                Margin="0,0,0,15"
+                Margin="10,0,0,15"
                 Orientation="Horizontal">
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="날짜" />
                 <DatePicker
                     x:Name="dtp02"
@@ -133,43 +153,55 @@
                     Margin="5"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     SelectedDate="{Binding Path=FixDate, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="내용" />
                 <TextBox
                     x:Name="수정내용입력"
                     Width="175"
                     Margin="5"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     Text="{Binding Path=FixWhat, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="태그" />
                 <TextBox
                     x:Name="수정태그입력"
                     Width="175"
                     Margin="5"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     Text="{Binding Path=FixTag, Mode=TwoWay}" />
                 <TextBlock
                     Margin="5"
                     VerticalAlignment="Center"
+                    Foreground="white"
+                    Opacity="0.6"
                     Text="장소" />
                 <TextBox
                     x:Name="수정장소입력"
                     Width="175"
                     Margin="5"
                     VerticalAlignment="Center"
+                    Opacity="0.8"
                     Text="{Binding Path=FixPlace, Mode=TwoWay}" />
                 <Button
                     Margin="5"
                     Background="#B983FF"
                     BorderBrush="Transparent"
                     Command="{Binding Path=FixPlanDataButtonCommand}"
-                    Content="일정수정">
+                    Content="일정수정"
+                    Foreground="white"
+                    Opacity="0.6">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5" />
@@ -189,20 +221,22 @@
             <TextBox
                 x:Name="검색텍스트박스"
                 Grid.Row="3"
-                Width="975"
+                Width="850"
                 Height="30"
                 Margin="20,0,20,10"
-                Padding="5"
                 HorizontalAlignment="Center"
-                FontSize="14"
+                FontSize="20"
                 Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 Grid.Row="3"
-                Margin="5"
+                Width="800"
+                Height="30"
+                Margin="20,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Foreground="Gray"
                 IsHitTestVisible="False"
+                Opacity="0.8"
                 Text="     검색할 내용을 입력해주세요">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
@@ -226,6 +260,7 @@
                     x:Name="listlist"
                     GridViewColumnHeader.Click="gridViewColumnHeader_Click"
                     ItemsSource="{Binding Path=PlanCollection}"
+                    Opacity="0.95"
                     SelectedItem="{Binding Path=SelectedCity}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

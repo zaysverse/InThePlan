@@ -88,7 +88,9 @@
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Model\PageMove.cs" />
     <Compile Include="Model\signup.cs" />
+    <Compile Include="Model\td.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
+    <Compile Include="ViewModels\Commands\TDCheckCommand.cs" />
     <Compile Include="ViewModels\Commands\DeleteButtonCommand.cs" />
     <Compile Include="ViewModels\Commands\DeleteImageCommand.cs" />
     <Compile Include="ViewModels\Commands\FixPlanDataButtonCommand.cs" />

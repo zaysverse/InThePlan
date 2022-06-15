@@ -28,16 +28,20 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock
-                    Margin="20,0,10,0"
+                    Margin="30,20,10,0"
                     VerticalAlignment="Center"
+                    FontFamily="Helvetica"
                     FontSize="30"
                     FontWeight="SemiBold"
-                    Text="달력 Calendar" />
+                    Opacity="0.7"
+                    Text="달력 " />
                 <Button
                     x:Name="플래너"
+                    Margin="10,10,0,0"
                     Background="Transparent"
+                    BorderThickness="0"
                     Command="{Binding PlanCommand}">
-                    <Image Margin="10,0,0,0" Source="Icons/icons8-todo-list-96.png" />
+                    <Image Source="Icons/icons8-todo-list-96.png" />
                 </Button>
             </StackPanel>
 
@@ -56,7 +60,7 @@
 
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                     <Viewbox>
-                        <Calendar Width="192" Height="258" />
+                        <Calendar Width="192" Height="170" />
                     </Viewbox>
                 </StackPanel>
 
@@ -70,13 +74,36 @@
                         </MenuItem>
                     </Menu>
                 </DockPanel>-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Margin="20,10,20,20"
+                        FontSize="30"
+                        FontWeight="SemiBold"
+                        Foreground="Black"
+                        Opacity="0.7"
+                        Text="To Do List" />
+                    <Button
+                        Grid.Column="1"
+                        Width="70"
+                        Height="50"
+                        Margin="0,0,15,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding Path=DataContext.TDCheckCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+                        Content="✓"
+                        FontSize="25"
+                        FontWeight="UltraBold"
+                        Opacity="0.7" />
 
-                <TextBlock
-                    Margin="20,10,20,20"
-                    FontSize="30"
-                    FontWeight="SemiBold"
-                    Foreground="Black"
-                    Text="To Do List" />
+                </Grid>
+
+
 
                 <Separator Margin="15,0,15,0" />
 
@@ -189,6 +216,7 @@
                         </Grid>
                     </Border>
                 </Grid>
+
             </StackPanel>
         </Grid>
     </Grid>
